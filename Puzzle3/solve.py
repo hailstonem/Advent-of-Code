@@ -2,7 +2,7 @@ import numpy as np
 
 
 def line_to_bool(line):
-    return [x == "#" for x in line]
+    return [x == "#" for x in line.strp("\n")]
 
 
 def move_until_limit(coords=[(0, 0)], limits=[323, None], move=[1, 3]):

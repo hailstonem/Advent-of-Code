@@ -10,7 +10,7 @@ def get_sum_2020_3n(numberslist):
     numberslist2020 = [2020 - x for x in numberslist]
 
     for x in numberslist:
-        residuals = [y - x for y in numberslist2020
+        residuals = [y - x for y in numberslist2020]
         # this allows for double use of numbers:
         for r in residuals:
             # only search if residual >0

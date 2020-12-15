@@ -11,9 +11,8 @@ def move_until_limit(coords=None, limits=(323, None), move=(1, 3)):
     # Recursive move: easily adaptable to arbitrary decision: but could do this analytically
     next_move = [c + m for c, m in zip(coords[-1], move)]
 
-    # print([(c, c_lim) for c, c_lim in zip(next_move, limits)])
     if all([c_lim is None or c < c_lim for c, c_lim in zip(next_move, limits)]):
-        #    # print(next_move)
+
         coords.append(next_move)
         coords = move_until_limit(coords, limits, move)
 
@@ -32,7 +31,8 @@ def remap_out_of_range_coords(coords=[(0, 0)], limits=[None, 32]):
 
 with open("input.txt", "r") as numbersfile:
     lineslist = numbersfile.readlines()
-
+# use of numpy array not really necessary: we could just step through each line:
+# but it does allow us to precalculate all the positions and extract the tree presence easily
 np_map = np.array([line_to_bool(l) for l in lineslist])
 
 # move through map:
@@ -44,3 +44,5 @@ total_trees = np.sum((np_map[tuple(zip(*moves))]))
 print(f"Total trees: {total_trees}")
 
 """----Part 2---"""
+# Now we can reuse that numpy map
+# slopes are defined opposite of question brief

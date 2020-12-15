@@ -1,20 +1,20 @@
 def get_sum_2020_2n(numberslist):
     numberslist2020 = [2020 - x for x in numberslist]
 
-    for x in numberslist:
-        if x in numberslist2020:
+    for en, x in enumerate(numberslist):
+        if x in numberslist2020[en:]:
             return x, 2020 - x
 
 
 def get_sum_2020_3n(numberslist):
     numberslist2020 = [2020 - x for x in numberslist]
 
-    for x in numberslist:
-        residuals = [y - x for y in numberslist2020]
-        # this allows for double use of numbers:
+    for en, x in enumerate(numberslist):
+        residuals = [y - x for y in numberslist2020[en:]]
+
         for r in residuals:
             # only search if residual >0
-            if r and r in numberslist:
+            if r and r in numberslist[en:]:
                 return r, x, 2020 - r - x
 
 

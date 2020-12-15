@@ -46,3 +46,15 @@ print(f"Total trees: {total_trees}")
 """----Part 2---"""
 # Now we can reuse that numpy map
 # slopes are defined opposite of question brief
+slopes = [(1, 1), (1, 3), (1, 5), (1, 7), (2, 1)]
+
+trees_acc = np.int64(1)  # Large: Avoid overflow!
+for slope in slopes:
+    print(f"Slope: {slope}")
+    moves = move_until_limit(limits=[np_map.shape[0], None], move=slope)
+    print(moves[2])
+    moves = remap_out_of_range_coords(moves, limits=[None, np_map.shape[1]])
+    trees = np.sum((np_map[tuple(zip(*moves))]))
+    print(trees)
+    trees_acc = trees_acc * trees
+print(f"Multiplied Trees: {trees_acc}")

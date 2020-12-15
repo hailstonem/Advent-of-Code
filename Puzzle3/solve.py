@@ -5,7 +5,10 @@ def line_to_bool(line):
     return [x == "#" for x in line.strip("\n")]
 
 
-def move_until_limit(coords=[(0, 0)], limits=[323, None], move=[1, 3]):
+def move_until_limit(coords=None, limits=(323, None), move=(1, 3)):
+    if coords == None:
+        coords = [(0, 0)]
+    # Recursive move: easily adaptable to arbitrary decision: but could do this analytically
     next_move = [c + m for c, m in zip(coords[-1], move)]
 
     # print([(c, c_lim) for c, c_lim in zip(next_move, limits)])
